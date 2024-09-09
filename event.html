@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move the Box</title>
+    <style>
+        #myBox {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="myBox"></div>
+    <script>
+        const myBox = document.getElementById("myBox");
+        const moveAmount = 10;
+        let x = 0;
+        let y = 0;
+
+        document.addEventListener("keydown", event => {
+            if (event.key.startsWith("Arrow")) {
+                event.preventDefault(); // Prevent scrolling when using arrow keys
+
+                switch (event.key) {
+                    case "ArrowUp":
+                        y -= moveAmount;
+                        break;
+                    case "ArrowDown":
+                        y += moveAmount;
+                        break;
+                    case "ArrowLeft":
+                        x -= moveAmount;
+                        break;
+                    case "ArrowRight":
+                        x += moveAmount;
+                        break;
+                }
+
+                // Update box position
+                myBox.style.top = `${y}px`;
+                myBox.style.left = `${x}px`;
+
+                // Change background color based on key down event
+                myBox.style.backgroundColor = "tomato";
+            }
+        });
+
+        document.addEventListener("keyup", () => {
+            // Reset background color when key is released
+            myBox.style.backgroundColor = "lightblue";
+        });
+    </script>
+</body>
+</html>
